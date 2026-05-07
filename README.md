@@ -68,3 +68,5 @@ colcon build --packages-select my_cpp_pkg
 
 source install/setup.bash
 ```
+Khi chạy `all_nodes.launch.py`, hệ thống sẽ khởi tạo đồng thời cả 3 ROS2 nodes. `camera_node` thực hiện việc thu nhận và xử lý hình ảnh để detect vật thể, sau đó tính toán tọa độ `(x, y)` và publish dữ liệu lên ROS2 topic. `uart_node` subscribe dữ liệu này và truyền tọa độ về laptop thông qua giao tiếp UART, trong khi `tcp_server_node` phát dữ liệu tọa độ theo thời gian thực tới các TCP client kết nối vào server thông qua địa chỉ IP của Raspberry Pi và port `9000`.
+
