@@ -1,0 +1,37 @@
+cmake_minimum_required(VERSION 3.8)
+project(my_cpp_pkg)
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(OpenCV REQUIRED)
+
+# camera_node
+add_executable(camera_node src/camera_node.cpp)
+ament_target_dependencies(camera_node rclcpp geometry_msgs)
+target_link_libraries(camera_node ${OpenCV_LIBS})
+
+# uart_node
+add_executable(uart_node src/uart_node.cpp)
+ament_target_dependencies(uart_node rclcpp geometry_msgs)
+
+# tcp_server_node
+add_executable(tcp_server_node src/tcp_server_node.cpp)
+ament_target_dependencies(tcp_server_node rclcpp geometry_msgs)
+
+install(TARGETS
+  camera_node
+  uart_node
+  tcp_server_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
+ament_package()
