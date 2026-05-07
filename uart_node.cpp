@@ -57,3 +57,4 @@ int main(int argc, char* argv[])
     rclcpp::shutdown();
     return 0;
 }
+// PHẦN UART NÀY ĐANG BỊ LỖI NÊN ANH BẢO THÔNG CẢM :V, nó chỉ gửi dữ liệu về terminal trên rasp chứ kh qua bên terminal bên lap  
